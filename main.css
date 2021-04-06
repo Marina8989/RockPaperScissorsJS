@@ -41,3 +41,18 @@
 .message{
     margin: 3rem 0;
 }
+.btn{
+    border-radius: 50%;
+    border: none;
+    padding: 10px;
+    font-size: 3rem;
+    margin: 0 20px;
+    cursor: pointer;
+    transition: background .8s ease;
+}
+.btn:hover{
+    background: rgb(124, 169, 236);
+}
+p{
+    margin: 3rem 0;
+}
