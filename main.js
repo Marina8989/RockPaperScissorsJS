@@ -8,15 +8,31 @@ const p = document.querySelector('.p');
 const s = document.querySelector('.s');
 
 
-function findOption() {
+
+function compOption() {
     let option = ['r', 'p', 's']
     let randOption = Math.floor(Math.random() * option.length);
-    console.log(randOption);
+    return randOption;
 }
 
 
 function game(choice) {
-    schoice = findOption();
+    let computerChosed = compOption();
+    
+    if(choice === 'r') {
+       choice = 0;
+    }
+    if(choice === 'p') {
+       choice = 1;
+    }
+    if(choice === 's') {
+      choice = 2
+    }
+
+    console.log('Computer: ' + computerChosed);
+    console.log('User: ' + choice);
+    
+    return choice;
 }
 
 
