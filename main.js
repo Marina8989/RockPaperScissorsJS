@@ -12,6 +12,16 @@ const s = document.querySelector('.s');
 function compOption() {
     let option = ['r', 'p', 's']
     let randOption = Math.floor(Math.random() * option.length);
+
+    if(randOption === 0) {
+       randOption = 'r';
+    }
+    if(randOption === 1) {
+       randOption = 'p';
+    }
+    if(randOption === 2) {
+      randOption = 's';
+    }
     return randOption;
 }
 
@@ -19,19 +29,29 @@ function compOption() {
 function game(choice) {
     let computerChosed = compOption();
     
-    if(choice === 'r') {
-       choice = 0;
+    // console.log('Computer: ' + computerChosed);
+    // console.log('User: ' + choice);
+
+    if((choice === 'p' && computerChosed === 'r') || (choice === 'r' && computerChosed === 's') || (choice === 's' && computerChosed === 'p')) {
+        userCount++;
+        userScore.innerHTML = userCount;
+        messageHeader.innerHTML = 'User won';
+        console.log('Computer: ' + computerChosed);
+        console.log('User: ' + choice);
     }
-    if(choice === 'p') {
-       choice = 1;
+    if((choice === 'r' && computerChosed === 'p') || (choice === 's' && computerChosed === 'r') || (choice === 'p' && computerChosed === 's')) {
+        compCount++;
+        compScore.innerHTML = compCount;
+        messageHeader.innerHTML = 'Comp won';
+        console.log('Computer: ' + computerChosed);
+        console.log('User: ' + choice);
     }
-    if(choice === 's') {
-      choice = 2
+    if((choice === 'r' && computerChosed === 'r') || (choice === 'p' && computerChosed === 'p') || (choice === 's' && computerChosed === 's')) {
+        messageHeader.innerHTML = 'Draw';
+        console.log('Computer: ' + computerChosed);
+        console.log('User: ' + choice);
     }
 
-    console.log('Computer: ' + computerChosed);
-    console.log('User: ' + choice);
-    
     return choice;
 }
 
@@ -40,12 +60,16 @@ function makeGame() {
 
     r.addEventListener('click', function() {
         game('r');
+        r.style.border = '1px solid green';
+        
     })
     p.addEventListener('click', function() {
        game('p');
+       p.style.border = '1px solid green';
     })
     s.addEventListener('click', function() {
        game('s');
+       s.style.border = '1px solid green';
     })
 
 }
