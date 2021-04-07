@@ -6,7 +6,9 @@ let messageHeader = document.querySelector('.message > h2');
 const r = document.querySelector('.r');
 const p = document.querySelector('.p');
 const s = document.querySelector('.s');
-
+const reset = document.querySelector('.reset');
+const userH4 = document.querySelector('#user');
+const compH4 = document.querySelector('#comp');
 
 
 function compOption() {
@@ -29,13 +31,11 @@ function compOption() {
 function game(choice) {
     let computerChosed = compOption();
     
-    // console.log('Computer: ' + computerChosed);
-    // console.log('User: ' + choice);
-
     if((choice === 'p' && computerChosed === 'r') || (choice === 'r' && computerChosed === 's') || (choice === 's' && computerChosed === 'p')) {
         userCount++;
         userScore.innerHTML = userCount;
         messageHeader.innerHTML = 'User won';
+
         console.log('Computer: ' + computerChosed);
         console.log('User: ' + choice);
     }
@@ -43,6 +43,7 @@ function game(choice) {
         compCount++;
         compScore.innerHTML = compCount;
         messageHeader.innerHTML = 'Comp won';
+        
         console.log('Computer: ' + computerChosed);
         console.log('User: ' + choice);
     }
@@ -52,25 +53,65 @@ function game(choice) {
         console.log('User: ' + choice);
     }
 
-    return choice;
+    
+    if(userCount == 10){
+        userScore.style.color = 'green';
+        messageHeader.innerHTML = 'User WON!!!!! 🎉'
+        setTimeout(startOver, 2000);
+    }
+    if(compCount == 10){
+       compScore.style.color = 'green';
+       messageHeader.innerHTML = 'Computer WON!!!! 🎉'
+       setTimeout(startOver, 2000);
+       
+    }
+
+    //return choice;
 }
 
+function startOver() {
+    userCount = 0;
+    compCount = 0;
+    userScore.innerHTML = userCount;
+    compScore.innerHTML = compCount;
+    compScore.style.color = 'white';
+    userScore.style.color = 'white';
+    messageHeader.innerHTML = `Let's Play!`;
+}
+
+
+function resetGame() {
+
+    reset.addEventListener('click', () => {
+        userCount = 0;
+        userScore.innerHTML = userCount;
+
+        compCount = 0;
+        compScore.innerHTML = compCount;
+
+        messageHeader.innerHTML = `Let's play!`;
+    })
+
+}
+resetGame();
 
 function makeGame() {
 
     r.addEventListener('click', function() {
         game('r');
-        r.style.border = '1px solid green';
-        
+        console.log('userUser:' + userCount);
+        console.log('compCompcomp:' + compCount);
     })
     p.addEventListener('click', function() {
        game('p');
-       p.style.border = '1px solid green';
+       console.log('userUser:' + userCount);
+       console.log('compCompcomp:' + compCount);
     })
     s.addEventListener('click', function() {
        game('s');
-       s.style.border = '1px solid green';
+       console.log('userUser:' + userCount);
+       console.log('compCompcomp:' + compCount);
     })
 
 }
-makeGame()
+makeGame();

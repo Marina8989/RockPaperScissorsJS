@@ -56,3 +56,15 @@
 p{
     margin: 3rem 0;
 }
+.reset{
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background .5s ease;
+    transition: color .4s ease;
+}
+.reset:hover{
+    background: tomato;
+    color: white;
+}
